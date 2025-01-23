@@ -1,0 +1,29 @@
+#version: '3.9' (Your Docker Compose CLI version (v2.32.0) supports all Compose file versions up to '3.9'.)
+# version not required  
+# version is now using "compose spec"
+# v2 and v3 are now combined!
+# docker-compose v1.27+ required
+
+services:
+  redis:
+    image: redis
+
+  db:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "postgres"
+
+  vote:
+    image: voting-app
+    ports:
+      - "5000:80"
+
+  result:
+    image: result-app
+    ports:
+      - "5001:80"
+
+  worker:
+    image: worker-app
+
